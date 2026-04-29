@@ -7,7 +7,7 @@ services:
     dockerfilePath: ./Backend/Dockerfile
     envVars:
       - key: SPRING_DATASOURCE_URL
-        value: jdbc:mysql://mysql-3c3d8cb8-portifolio-victor-hugo.g.aivencloud.com:12269/defaultdb?createDatabaseIfNotExist=true&useSSL=true&serverTimezone=UTC&allowPublicKeyRetrieval=true
+        value: jdbc:mysql://mysql-3c3d8cb8-portifolio-victor-hugo.g.aivencloud.com:12269/defaultdb?createDatabaseIfNotExist=true&sslMode=REQUIRED&serverTimezone=UTC&allowPublicKeyRetrieval=true
       - key: SPRING_DATASOURCE_USERNAME
         sync: false
       - key: SPRING_DATASOURCE_PASSWORD
@@ -17,4 +17,3 @@ services:
         sync: false
       - key: SPRING_MAIL_PASSWORD
         sync: false
-
