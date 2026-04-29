@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  mysql-db:
+    image: mysql:8.0
+    container_name: banco_dados_portifolio
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: portfoliodb
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: adminpassword
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+      # Automatically run scripts inside /docker-entrypoint-initdb.d on startup
+      - ./01_schema.sql:/docker-entrypoint-initdb.d/01_schema.sql
+      - ./02_seed.sql:/docker-entrypoint-initdb.d/02_seed.sql
+    restart: unless-stopped
+
+  # Optional Adminer UI for managing DB on http://localhost:8081
+  adminer:
+    image: adminer
+    container_name: portfolio-adminer
+    restart: unless-stopped
+    ports:
+      - "8081:8080"
+    depends_on:
+      - mysql-db
+
+volumes:
+  mysql-data:
