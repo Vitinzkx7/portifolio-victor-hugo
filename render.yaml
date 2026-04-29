@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: portifolio-backend
+    env: docker
+    dockerContext: ./Backend
+    dockerfilePath: ./Backend/Dockerfile
+    envVars:
+      - key: SPRING_DATASOURCE_URL
+        value: jdbc:mysql://mysql-3c3d8cb8-portifolio-victor-hugo.g.aivencloud.com:12269/defaultdb?createDatabaseIfNotExist=true&useSSL=true&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      - key: SPRING_DATASOURCE_USERNAME
+        sync: false
+      - key: SPRING_DATASOURCE_PASSWORD
+        sync: false
+      # Environment variables expected for email sending (from application.properties)
+      - key: SPRING_MAIL_USERNAME
+        sync: false
+      - key: SPRING_MAIL_PASSWORD
+        sync: false
